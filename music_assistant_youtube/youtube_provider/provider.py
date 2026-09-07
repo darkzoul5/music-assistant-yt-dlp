@@ -13,7 +13,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
-from music_assistant_models.enums import ContentType, MediaType, StreamType
+from music_assistant_models.config_entries import ConfigEntry
+from music_assistant_models.enums import ContentType, MediaType, StreamType, ConfigEntryType
 from music_assistant_models.errors import MediaNotFoundError, SetupFailedError, UnplayableMediaError
 from music_assistant_models.media_items import (
     Album,
@@ -84,6 +85,49 @@ class YouTubeProvider(MusicProvider):
     _yt_dlp: Any = None
     _netscape_cookies: str | None = None
     _file_cache: FileCache | None = None
+
+    async def get_config_entries(self) -> tuple[ConfigEntry, ...]:
+        """Return configuration entries for the YouTube provider."""
+        return (
+            ConfigEntry(
+                key=CONF_API_KEY,
+                type=ConfigEntryType.SECURE_STRING,
+                required=False,
+            ),
+            ConfigEntry(
+                key=CONF_PLAYLIST_LIMIT,
+                type=ConfigEntryType.INTEGER,
+                default_value=DEFAULT_PLAYLIST_LIMIT,
+                required=False,
+            ),
+            ConfigEntry(
+                key=CONF_COOKIES,
+                type=ConfigEntryType.STRING,
+                required=False,
+                advanced=True,
+            ),
+            ConfigEntry(
+                key=CONF_CACHE_ENABLED,
+                type=ConfigEntryType.BOOLEAN,
+                default_value=DEFAULT_CACHE_ENABLED,
+                required=False,
+                advanced=True,
+            ),
+            ConfigEntry(
+                key=CONF_CACHE_DIR,
+                type=ConfigEntryType.STRING,
+                default_value=DEFAULT_CACHE_DIR,
+                required=False,
+                advanced=True,
+            ),
+            ConfigEntry(
+                key=CONF_CACHE_MAX_SIZE_MB,
+                type=ConfigEntryType.INTEGER,
+                default_value=0,
+                required=False,
+                advanced=True,
+            ),
+        )
 
     async def handle_async_init(self) -> None:
         """Set up the YouTube provider."""
