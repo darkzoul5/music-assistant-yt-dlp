@@ -1,3 +1,6 @@
+## 2.10.4-patch.75097d8
+- fix: use `SECURE_STRING` instead of `STRING` for `CONF_COOKIES`
+
 ## 2.10.4
 - Upstream Music Assistant server update to 2.10.4
 
