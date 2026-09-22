@@ -61,6 +61,7 @@ from .helpers import (
     search_yt,
 )
 from .parsers import parse_channel_as_artist, parse_playlist, parse_playlist_as_album, parse_track
+from .url_utils import resolve_youtube_search_target
 from .youtube_api import (
     YouTubeDataAPIError,
     api_get_channel,
@@ -220,6 +221,23 @@ class YouTubeProvider(MusicProvider):
         :param media_types: A list of media_types to include.
         :param limit: Number of items to return in the search (per type).
         """
+        if target := resolve_youtube_search_target(search_query):
+            target_type, target_id = target
+            if target_type == "track":
+                if MediaType.TRACK not in media_types:
+                    return SearchResults(tracks=[], artists=[], playlists=[])
+                try:
+                    track = await self.get_track(target_id)
+                except MediaNotFoundError:
+                    return SearchResults(tracks=[], artists=[], playlists=[])
+                return SearchResults(tracks=[track], artists=[], playlists=[])
+            if MediaType.PLAYLIST not in media_types:
+                return SearchResults(tracks=[], artists=[], playlists=[])
+            try:
+                playlist = await self.get_playlist(target_id)
+            except MediaNotFoundError:
+                return SearchResults(tracks=[], artists=[], playlists=[])
+            return SearchResults(tracks=[], artists=[], playlists=[playlist])
         tracks: list[Track] = []
         artists: list[Artist] = []
         playlists: list[Playlist] = []
