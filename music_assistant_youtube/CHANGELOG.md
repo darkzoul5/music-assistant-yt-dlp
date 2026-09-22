@@ -1,3 +1,6 @@
+## 2.10.4-patch.4394e23
+- Merge branch 'feature/yt-playlist-uri-search' This merge adds support for resolving direct YouTube URLs in provider search without changing the existing text-search flow.
+
 ## 2.10.4-patch.75097d8
 - fix: use `SECURE_STRING` instead of `STRING` for `CONF_COOKIES`
 
