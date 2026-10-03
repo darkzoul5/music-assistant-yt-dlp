@@ -1,3 +1,6 @@
+## 2.10.5-patch.336daeb
+- chore: bump upstream MA to 2.10.5
+
 ## 2.10.5
 - Upstream Music Assistant server update to 2.10.5
 
