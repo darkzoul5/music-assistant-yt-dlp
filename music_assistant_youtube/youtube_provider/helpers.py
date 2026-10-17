@@ -374,6 +374,9 @@ def download_audio_to_path(
         "skip_download": False,
         "nopart": True,  # --no-part: write directly in the in-progress folder
         "quiet": ydl_opts.get("quiet", True),
+        # googlevideo throttles open-ended requests to ~32 KiB/s; chunked
+        # Range requests download at full speed.
+        "http_chunk_size": 10 * 1024 * 1024,
     }
     stream_url = stream_format.get("url")
     watch_url = f"{YT_DOMAIN}/watch?v={video_id}"
