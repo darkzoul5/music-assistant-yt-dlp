@@ -1,3 +1,6 @@
+## 2.10.6-patch.2f8972e
+- Merge pull request #8 from mikkelke/chunked-cache-download
+
 ## 2.10.6
 - Upstream Music Assistant server update to 2.10.6
 
