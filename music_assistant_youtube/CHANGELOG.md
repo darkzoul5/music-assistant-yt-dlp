@@ -1,3 +1,6 @@
+## 2.10.7-patch.0b627fc
+- chore: bump upstream MA to 2.10.7
+
 ## 2.10.7
 - Upstream Music Assistant server update to 2.10.7
 
