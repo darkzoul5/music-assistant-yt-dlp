@@ -1,3 +1,6 @@
+## 2.10.11-patch.a99e424
+- chore: bump upstream MA to 2.10.11
+
 ## 2.10.11
 - Upstream Music Assistant server update to 2.10.11
 
