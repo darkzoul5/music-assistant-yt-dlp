@@ -1,3 +1,6 @@
+## 2.10.12-patch.08072ad
+- chore: bump upstream MA to 2.10.12
+
 ## 2.10.12
 - Upstream Music Assistant server update to 2.10.12
 
