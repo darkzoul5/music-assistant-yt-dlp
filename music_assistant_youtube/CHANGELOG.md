@@ -1,3 +1,6 @@
+## 2.10.13-patch.43b5230
+- chore: bump upstream MA to 2.10.13
+
 ## 2.10.13
 - Upstream Music Assistant server update to 2.10.13
 
